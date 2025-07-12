@@ -29,7 +29,6 @@
     text-align: center;
   }
 
-  /* Navigation bar */
   nav {
     display: flex;
     justify-content: center;
@@ -61,7 +60,6 @@
     cursor: default;
   }
 
-  /* Skill list container */
   .skill-list {
     max-width: 480px;
     margin: 0 auto;
@@ -69,7 +67,7 @@
     border-radius: 10px;
     padding: 20px 30px;
     box-shadow: 0 0 20px #3f51b5cc;
-    display: none; /* Hidden by default, show active */
+    display: none;
     flex-direction: column;
   }
 
@@ -127,17 +125,15 @@
     accent-color: #3f51b5;
   }
 
-  /* Hover effect */
   .shard:hover {
     background: #2a2a4d;
   }
 
-  /* Rarity colors */
-  .rarity-common { color: #eeeeee; }      /* White */
-  .rarity-uncommon { color: #4caf50; }    /* Green */
-  .rarity-rare { color: #2196f3; }        /* Blue */
-  .rarity-epic { color: #9c27b0; }        /* Purple */
-  .rarity-legendary { color: #ff9800; }   /* Orange */
+  .rarity-common { color: #eeeeee; }
+  .rarity-uncommon { color: #4caf50; }
+  .rarity-rare { color: #2196f3; }
+  .rarity-epic { color: #9c27b0; }
+  .rarity-legendary { color: #ff9800; }
 </style>
 </head>
 <body>
@@ -159,7 +155,6 @@
   <button data-skill="hunting" aria-pressed="false">Hunting</button>
 </nav>
 
-<!-- Skill Lists -->
 <section id="combat" class="skill-list active" aria-label="Combat Attribute Shards">
   <h2>Combat</h2>
   <div class="shard" data-rarity="common">
@@ -264,27 +259,19 @@
 </section>
 
 <script>
-  // Navigation buttons logic
+  
   const navButtons = document.querySelectorAll('nav button');
   const skillLists = document.querySelectorAll('.skill-list');
 
   function showSkill(skillId) {
     skillLists.forEach(section => {
-      if (section.id === skillId) {
-        section.classList.add('active');
-      } else {
-        section.classList.remove('active');
-      }
+      section.classList.toggle('active', section.id === skillId);
     });
 
     navButtons.forEach(btn => {
-      if (btn.dataset.skill === skillId) {
-        btn.classList.add('active');
-        btn.setAttribute('aria-pressed', 'true');
-      } else {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-pressed', 'false');
-      }
+      const active = btn.dataset.skill === skillId;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
   }
 
@@ -296,7 +283,7 @@
     });
   });
 
-  // Counters
+  
   const unlockedCountSpan = document.getElementById('unlocked-count');
   const maxedCountSpan = document.getElementById('maxed-count');
   const totalShardsSpan1 = document.getElementById('total-shards');
@@ -304,10 +291,9 @@
 
   const allUnlockedCheckboxes = () => document.querySelectorAll('input.unlocked');
   const allMaxedCheckboxes = () => document.querySelectorAll('input.maxed');
-  const allCheckboxes = () => [...allUnlockedCheckboxes(), ...allMaxedCheckboxes()];
 
   function updateCounters() {
-    const totalShards = allUnlockedCheckboxes().length; // total shards = count of unlocked checkboxes (one per shard)
+    const totalShards = allUnlockedCheckboxes().length;
     totalShardsSpan1.textContent = totalShards;
     totalShardsSpan2.textContent = totalShards;
 
@@ -326,14 +312,27 @@
     maxedCountSpan.textContent = maxedCount;
   }
 
-  // Update counters when any checkbox changes
-  document.querySelectorAll('input.unlocked, input.maxed').forEach(cb => {
-    cb.addEventListener('change', () => {
+  
+  document.querySelectorAll('.shard').forEach(shard => {
+    const unlocked = shard.querySelector('input.unlocked');
+    const maxed = shard.querySelector('input.maxed');
+
+    maxed.addEventListener('change', () => {
+      if (maxed.checked) {
+        unlocked.checked = true;
+      }
+      updateCounters();
+    });
+
+    unlocked.addEventListener('change', () => {
+      if (!unlocked.checked) {
+        maxed.checked = false;
+      }
       updateCounters();
     });
   });
 
-  // Initialize counters on page load
+ 
   updateCounters();
 </script>
 
