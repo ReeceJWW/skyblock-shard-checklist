@@ -9,4 +9,10 @@ A fast and helpful way to track your hypixel skyblock attributes on a simple to 
  - Shards sorted into specific skills!
  - Shards are ordered based on their rarity!
 
+__Skyblock Shards Checklist__ also has many features planned for the future!
+These include:
+- Once foraging update is added to API we plan to allow users to get data based on entering their username!
+- A searchbar to make finding specific shards much easier
+- Showing the easiest fusion / way to get each shard
+For more advanced data check out [Sky Shards](https://skyshards.com/#/recipes) which is very well made by [Campionnn](https://github.com/Campionnn)
 
