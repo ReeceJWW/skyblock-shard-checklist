@@ -50,7 +50,7 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  nav button:hover {
+  nav button:hover:not(.active) {
     background-color: #3f51b5;
     color: #fff;
   }
@@ -69,7 +69,7 @@
     border-radius: 10px;
     padding: 20px 30px;
     box-shadow: 0 0 20px #3f51b5cc;
-    display: none; 
+    display: none; /* Hidden by default, show active */
     flex-direction: column;
   }
 
@@ -127,18 +127,17 @@
     accent-color: #3f51b5;
   }
 
- 
+  /* Hover effect */
   .shard:hover {
     background: #2a2a4d;
   }
 
-  
+  /* Rarity colors */
   .rarity-common { color: #eeeeee; }      /* White */
   .rarity-uncommon { color: #4caf50; }    /* Green */
   .rarity-rare { color: #2196f3; }        /* Blue */
   .rarity-epic { color: #9c27b0; }        /* Purple */
   .rarity-legendary { color: #ff9800; }   /* Orange */
-
 </style>
 </head>
 <body>
@@ -160,7 +159,7 @@
   <button data-skill="hunting" aria-pressed="false">Hunting</button>
 </nav>
 
-
+<!-- Skill Lists -->
 <section id="combat" class="skill-list active" aria-label="Combat Attribute Shards">
   <h2>Combat</h2>
   <div class="shard" data-rarity="common">
@@ -242,4 +241,101 @@
   </div>
 </section>
 
-<section id
+<section id="enchanting" class="skill-list" aria-label="Enchanting Attribute Shards">
+  <h2>Enchanting</h2>
+  <div class="shard" data-rarity="epic">
+    <div class="shard-name rarity-epic">Magic Find Shard</div>
+    <div class="checkbox-group">
+      <label><input type="checkbox" class="unlocked" /> Unlocked</label>
+      <label><input type="checkbox" class="maxed" /> Maxed</label>
+    </div>
+  </div>
+</section>
+
+<section id="hunting" class="skill-list" aria-label="Hunting Attribute Shards">
+  <h2>Hunting</h2>
+  <div class="shard" data-rarity="legendary">
+    <div class="shard-name rarity-legendary">True Defense Shard</div>
+    <div class="checkbox-group">
+      <label><input type="checkbox" class="unlocked" /> Unlocked</label>
+      <label><input type="checkbox" class="maxed" /> Maxed</label>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Navigation buttons logic
+  const navButtons = document.querySelectorAll('nav button');
+  const skillLists = document.querySelectorAll('.skill-list');
+
+  function showSkill(skillId) {
+    skillLists.forEach(section => {
+      if (section.id === skillId) {
+        section.classList.add('active');
+      } else {
+        section.classList.remove('active');
+      }
+    });
+
+    navButtons.forEach(btn => {
+      if (btn.dataset.skill === skillId) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+      } else {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      }
+    });
+  }
+
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!btn.classList.contains('active')) {
+        showSkill(btn.dataset.skill);
+      }
+    });
+  });
+
+  // Counters
+  const unlockedCountSpan = document.getElementById('unlocked-count');
+  const maxedCountSpan = document.getElementById('maxed-count');
+  const totalShardsSpan1 = document.getElementById('total-shards');
+  const totalShardsSpan2 = document.getElementById('total-shards-2');
+
+  const allUnlockedCheckboxes = () => document.querySelectorAll('input.unlocked');
+  const allMaxedCheckboxes = () => document.querySelectorAll('input.maxed');
+  const allCheckboxes = () => [...allUnlockedCheckboxes(), ...allMaxedCheckboxes()];
+
+  function updateCounters() {
+    const totalShards = allUnlockedCheckboxes().length; // total shards = count of unlocked checkboxes (one per shard)
+    totalShardsSpan1.textContent = totalShards;
+    totalShardsSpan2.textContent = totalShards;
+
+    let unlockedCount = 0;
+    let maxedCount = 0;
+
+    allUnlockedCheckboxes().forEach(cb => {
+      if (cb.checked) unlockedCount++;
+    });
+
+    allMaxedCheckboxes().forEach(cb => {
+      if (cb.checked) maxedCount++;
+    });
+
+    unlockedCountSpan.textContent = unlockedCount;
+    maxedCountSpan.textContent = maxedCount;
+  }
+
+  // Update counters when any checkbox changes
+  document.querySelectorAll('input.unlocked, input.maxed').forEach(cb => {
+    cb.addEventListener('change', () => {
+      updateCounters();
+    });
+  });
+
+  // Initialize counters on page load
+  updateCounters();
+</script>
+
+</body>
+</html>
