@@ -18,29 +18,53 @@
   h1 {
     font-weight: 600;
     font-size: 2.5rem;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    text-align: center;
   }
 
   .counters {
     font-weight: 600;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     font-size: 1.25rem;
+    text-align: center;
   }
 
-  .shard-list {
-    max-width: 480px;
+  /* Container for all skill lists */
+  .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1100px;
     margin: 0 auto;
+  }
+
+  /* Each skill list box */
+  .skill-list {
     background-color: #1e1e1e;
     border-radius: 10px;
-    padding: 20px 30px;
-    box-shadow: 0 0 20px #3f51b5cc;
+    padding: 15px 25px;
+    width: 240px;
+    box-shadow: 0 0 15px #3f51b5cc;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skill-list h2 {
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3f51b5;
+    padding-bottom: 5px;
+    color: #9aa0ff;
+    text-align: center;
   }
 
   .shard {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
+    padding: 8px 0;
     border-bottom: 1px solid #333;
   }
 
@@ -50,14 +74,13 @@
 
   .shard-name {
     font-weight: 600;
-    font-size: 1.1rem;
-    color: #b0b0ff;
+    font-size: 1rem;
     flex: 1 1 auto;
   }
 
   .checkbox-group {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     align-items: center;
     flex-shrink: 0;
   }
@@ -66,157 +89,182 @@
     cursor: pointer;
     user-select: none;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #9aa0ff;
   }
 
   input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
     accent-color: #3f51b5;
   }
 
-  
+
   .shard:hover {
     background: #2a2a4d;
   }
+
+
+  .rarity-common { color: #eeeeee; }      /* White */
+  .rarity-uncommon { color: #4caf50; }    /* Green */
+  .rarity-rare { color: #2196f3; }        /* Blue */
+  .rarity-epic { color: #9c27b0; }        /* Purple */
+  .rarity-legendary { color: #ff9800; }   /* Orange */
+
 </style>
 </head>
 <body>
 
 <h1>Attribute Shard Checklist</h1>
-<div class="counters">
-  Total Unlocked: <span id="unlocked-count">0</span> / 8 &nbsp;&nbsp;|&nbsp;&nbsp;
-  Total Maxed: <span id="maxed-count">0</span> / 8
+<div class="counters" role="status" aria-live="polite">
+  Total Unlocked: <span id="unlocked-count">0</span> / <span id="total-shards">0</span> &nbsp;&nbsp;|&nbsp;&nbsp;
+  Total Maxed: <span id="maxed-count">0</span> / <span id="total-shards-2">0</span>
 </div>
 
-<div class="shard-list" role="list" aria-label="Attribute Shard Checklist">
+<div class="skills-container">
 
-  <div class="shard" role="listitem">
-    <div class="shard-name">Strength Shard</div>
-    <div class="checkbox-group">
-      <label>
-        <input type="checkbox" class="unlocked" />
-        Unlocked
-      </label>
-      <label>
-        <input type="checkbox" class="maxed" />
-        Maxed
-      </label>
+  <!-- Combat -->
+  <section class="skill-list" aria-label="Combat Attribute Shards">
+    <h2>Combat</h2>
+    <div class="shard" data-rarity="common">
+      <div class="shard-name rarity-common">Strength Shard</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="unlocked" /> Unlocked</label>
+        <label><input type="checkbox" class="maxed" /> Maxed</label>
+      </div>
     </div>
-  </div>
+    <div class="shard" data-rarity="uncommon">
+      <div class="shard-name rarity-uncommon">Crit Chance Shard</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="unlocked" /> Unlocked</label>
+        <label><input type="checkbox" class="maxed" /> Maxed</label>
+      </div>
+    </div>
+    <div class="shard" data-rarity="rare">
+      <div class="shard-name rarity-rare">Critical Damage Shard</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="unlocked" /> Unlocked</label>
+        <label><input type="checkbox" class="maxed" /> Maxed</label>
+      </div>
+    </div>
+    <div class="shard" data-rarity="legendary">
+      <div class="shard-name rarity-legendary">Ferocity Shard</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="unlocked" /> Unlocked</label>
+        <label><input type="checkbox" class="maxed" /> Maxed</label>
+      </div>
+    </div>
+  </section>
 
-  <div class="shard" role="listitem">
-    <div class="shard-name">Critical Damage Shard</div>
-    <div class="checkbox-group">
-      <label>
-        <input type="checkbox" class="unlocked" />
-        Unlocked
-      </label>
-      <label>
-        <input type="checkbox" class="maxed" />
-        Maxed
-      </label>
+  <!-- Fishing -->
+  <section class="skill-list" aria-label="Fishing Attribute Shards">
+    <h2>Fishing</h2>
+    <div class="shard" data-rarity="common">
+      <div class="shard-name rarity-common">Sea Creature Chance Shard</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="unlocked" /> Unlocked</label>
+        <label><input type="checkbox" class="maxed" /> Maxed</label>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="shard" role="listitem">
-    <div class="shard-name">Crit Chance Shard</div>
-    <div class="checkbox-group">
-      <label>
-        <input type="checkbox" class="unlocked" />
-        Unlocked
-      </label>
-      <label>
-        <input type="checkbox" class="maxed" />
-        Maxed
-      </label>
+  <!-- Farming -->
+  <section class="skill-list" aria-label="Farming Attribute Shards">
+    <h2>Farming</h2>
+   
+    <div class="shard" data-rarity="common">
+      <div class="shard-name rarity-common">[No Shards]</div>
+      <div class="checkbox-group"></div>
     </div>
-  </div>
+  </section>
 
-  <div class="shard" role="listitem">
-    <div class="shard-name">Defense Shard</div>
-    <div class="checkbox-group">
-      <label>
-        <input type="checkbox" class="unlocked" />
-        Unlocked
-      </label>
-      <label>
-        <input type="checkbox" class="maxed" />
-        Maxed
-      </label>
+  <!-- Foraging -->
+  <section class="skill-list" aria-label="Foraging Attribute Shards">
+    <h2>Foraging</h2>
+    <!-- No official attribute shards for foraging, placeholder -->
+    <div class="shard" data-rarity="common">
+      <div class="shard-name rarity-common">[No Shards]</div>
+      <div class="checkbox-group"></div>
     </div>
-  </div>
+  </section>
 
-  <div class="shard" role="listitem">
-    <div class="shard-name">Speed Shard</div>
-    <div class="checkbox-group">
-      <label>
-        <input type="checkbox" class="unlocked" />
-        Unlocked
-      </label>
-      <label>
-        <input type="checkbox" class="maxed" />
-        Maxed
-      </label>
+  <!-- Mining -->
+  <section class="skill-list" aria-label="Mining Attribute Shards">
+    <h2>Mining</h2>
+    <div class="shard" data-rarity="common">
+      <div class="shard-name rarity-common">Mining Speed Shard</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="unlocked" /> Unlocked</label>
+        <label><input type="checkbox" class="maxed" /> Maxed</label>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="shard" role="listitem">
-    <div class="shard-name">Intelligence Shard</div>
-    <div class="checkbox-group">
-      <label>
-        <input type="checkbox" class="unlocked" />
-        Unlocked
-      </label>
-      <label>
-        <input type="checkbox" class="maxed" />
-        Maxed
-      </label>
+  <!-- Taming -->
+  <section class="skill-list" aria-label="Taming Attribute Shards">
+    <h2>Taming</h2>
+    <div class="shard" data-rarity="rare">
+      <div class="shard-name rarity-rare">Taming Shard</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="unlocked" /> Unlocked</label>
+        <label><input type="checkbox" class="maxed" /> Maxed</label>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="shard" role="listitem">
-    <div class="shard-name">Ferocity Shard</div>
-    <div class="checkbox-group">
-      <label>
-        <input type="checkbox" class="unlocked" />
-        Unlocked
-      </label>
-      <label>
-        <input type="checkbox" class="maxed" />
-        Maxed
-      </label>
+  <!-- Enchanting -->
+  <section class="skill-list" aria-label="Enchanting Attribute Shards">
+    <h2>Enchanting</h2>
+    <div class="shard" data-rarity="uncommon">
+      <div class="shard-name rarity-uncommon">Enchanting Shard</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="unlocked" /> Unlocked</label>
+        <label><input type="checkbox" class="maxed" /> Maxed</label>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="shard" role="listitem">
-    <div class="shard-name">Sea Creature Chance Shard</div>
-    <div class="checkbox-group">
-      <label>
-        <input type="checkbox" class="unlocked" />
-        Unlocked
-      </label>
-      <label>
-        <input type="checkbox" class="maxed" />
-        Maxed
-      </label>
+  <!-- Hunting -->
+  <section class="skill-list" aria-label="Hunting Attribute Shards">
+    <h2>Hunting</h2>
+    <div class="shard" data-rarity="epic">
+      <div class="shard-name rarity-epic">Hunting Shard</div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="unlocked" /> Unlocked</label>
+        <label><input type="checkbox" class="maxed" /> Maxed</label>
+      </div>
     </div>
-  </div>
+  </section>
 
 </div>
 
 <script>
-  const shards = document.querySelectorAll('.shard');
+
+
+  const shards = document.querySelectorAll('.shard input[type="checkbox"]');
   const unlockedCountEl = document.getElementById('unlocked-count');
   const maxedCountEl = document.getElementById('maxed-count');
+  const totalShardsEls = [document.getElementById('total-shards'), document.getElementById('total-shards-2')];
+
+
+  function countTotalShards() {
+  
+    const validShards = Array.from(document.querySelectorAll('.shard')).filter(shard => {
+      return shard.querySelector('input.unlocked') && shard.querySelector('input.maxed');
+    });
+    return validShards.length;
+  }
 
   function updateCounters() {
     let unlockedTotal = 0;
     let maxedTotal = 0;
 
-    shards.forEach(shard => {
+    const validShards = Array.from(document.querySelectorAll('.shard')).filter(shard => {
+      return shard.querySelector('input.unlocked') && shard.querySelector('input.maxed');
+    });
+
+    validShards.forEach(shard => {
       const unlocked = shard.querySelector('input.unlocked').checked;
       const maxed = shard.querySelector('input.maxed').checked;
       if (unlocked) unlockedTotal++;
@@ -225,12 +273,15 @@
 
     unlockedCountEl.textContent = unlockedTotal;
     maxedCountEl.textContent = maxedTotal;
+    totalShardsEls.forEach(el => el.textContent = validShards.length);
   }
 
-  // If maxed is checked, automatically check unlocked
-  shards.forEach(shard => {
+
+  document.querySelectorAll('.shard').forEach(shard => {
     const unlockedCheckbox = shard.querySelector('input.unlocked');
     const maxedCheckbox = shard.querySelector('input.maxed');
+
+    if (!unlockedCheckbox || !maxedCheckbox) return; // skip placeholders
 
     maxedCheckbox.addEventListener('change', () => {
       if (maxedCheckbox.checked) {
@@ -240,7 +291,6 @@
     });
 
     unlockedCheckbox.addEventListener('change', () => {
-      // If unlocked is unchecked, uncheck maxed as well
       if (!unlockedCheckbox.checked) {
         maxedCheckbox.checked = false;
       }
@@ -248,6 +298,7 @@
     });
   });
 
+ 
   updateCounters();
 </script>
 
