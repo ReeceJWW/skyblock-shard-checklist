@@ -13,6 +13,21 @@
       font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 20px;
+      position: relative;
+    }
+
+    .github-link {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #9aa0ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      z-index: 1000;
+    }
+
+    .github-link:hover {
+      color: #ffffff;
     }
 
     h1 {
@@ -145,239 +160,13 @@
 </head>
 <body>
 
-<h1>Attribute Shard Checklist</h1>
-<div class="counters" role="status" aria-live="polite">
-  Total Unlocked: <span id="unlocked-count">0</span> / <span id="total-shards">0</span> &nbsp;&nbsp;|&nbsp;&nbsp;
-  Total Maxed: <span id="maxed-count">0</span> / <span id="total-shards-2">0</span>
-</div>
-
-<nav aria-label="Skill Navigation">
-  <button data-skill="combat" class="active" aria-pressed="true">Combat</button>
-  <button data-skill="fishing" aria-pressed="false">Fishing</button>
-  <button data-skill="farming" aria-pressed="false">Farming</button>
-  <button data-skill="foraging" aria-pressed="false">Foraging</button>
-  <button data-skill="mining" aria-pressed="false">Mining</button>
-  <button data-skill="taming" aria-pressed="false">Taming</button>
-  <button data-skill="enchanting" aria-pressed="false">Enchanting</button>
-  <button data-skill="hunting" aria-pressed="false">Hunting</button>
-</nav>
-
-<!-- Combat -->
-<section id="combat" class="skill-list active">
-  <h2>Combat</h2>
-  <div class="shard" data-rarity="common">
-    <div class="shard-name rarity-common">
-      Strength Shard
-      <div class="attribute-name">Attribute: Strength</div>
-    </div>
-    <div class="checkbox-group">
-      <label><input type="checkbox" class="unlocked" /> Unlocked</label>
-      <label><input type="checkbox" class="maxed" /> Maxed</label>
-    </div>
-  </div>
-
-  <div class="shard" data-rarity="uncommon">
-    <div class="shard-name rarity-uncommon">
-      Crit Chance Shard
-      <div class="attribute-name">Attribute: Crit Chance</div>
-    </div>
-    <div class="checkbox-group">
-      <label><input type="checkbox" class="unlocked" /> Unlocked</label>
-      <label><input type="checkbox" class="maxed" /> Maxed</label>
-    </div>
-  </div>
-
-  <div class="shard" data-rarity="rare">
-    <div class="shard-name rarity-rare">
-      Critical Damage Shard
-      <div class="attribute-name">Attribute: Crit Damage</div>
-    </div>
-    <div class="checkbox-group">
-      <label><input type="checkbox" class="unlocked" /> Unlocked</label>
-      <label><input type="checkbox" class="maxed" /> Maxed</label>
-    </div>
-  </div>
-
-  <div class="shard" data-rarity="legendary">
-    <div class="shard-name rarity-legendary">
-      Ferocity Shard
-      <div class="attribute-name">Attribute: Ferocity</div>
-    </div>
-    <div class="checkbox-group">
-      <label><input type="checkbox" class="unlocked" /> Unlocked</label>
-      <label><input type="checkbox" class="maxed" /> Maxed</label>
-    </div>
-  </div>
-</section>
-
-<!-- Fishing -->
-<section id="fishing" class="skill-list">
-  <h2>Fishing</h2>
-  <div class="shard" data-rarity="common">
-    <div class="shard-name rarity-common">
-      Sea Creature Chance Shard
-      <div class="attribute-name">Attribute: Sea Creature Chance</div>
-    </div>
-    <div class="checkbox-group">
-      <label><input type="checkbox" class="unlocked" /> Unlocked</label>
-      <label><input type="checkbox" class="maxed" /> Maxed</label>
-    </div>
-  </div>
-</section>
-
-<!-- Farming -->
-<section id="farming" class="skill-list">
-  <h2>Farming</h2>
-  <div class="shard" data-rarity="common">
-    <div class="shard-name rarity-common">
-      [No Shards]
-      <div class="attribute-name">Attribute: N/A</div>
-    </div>
-    <div class="checkbox-group"></div>
-  </div>
-</section>
-
-<!-- Foraging -->
-<section id="foraging" class="skill-list">
-  <h2>Foraging</h2>
-  <div class="shard" data-rarity="common">
-    <div class="shard-name rarity-common">
-      [No Shards]
-      <div class="attribute-name">Attribute: N/A</div>
-    </div>
-    <div class="checkbox-group"></div>
-  </div>
-</section>
-
-<!-- Mining -->
-<section id="mining" class="skill-list">
-  <h2>Mining</h2>
-  <div class="shard" data-rarity="common">
-    <div class="shard-name rarity-common">
-      Mining Speed Shard
-      <div class="attribute-name">Attribute: Mining Speed</div>
-    </div>
-    <div class="checkbox-group">
-      <label><input type="checkbox" class="unlocked" /> Unlocked</label>
-      <label><input type="checkbox" class="maxed" /> Maxed</label>
-    </div>
-  </div>
-</section>
-
-<!-- Taming -->
-<section id="taming" class="skill-list">
-  <h2>Taming</h2>
-  <div class="shard" data-rarity="rare">
-    <div class="shard-name rarity-rare">
-      Taming Shard
-      <div class="attribute-name">Attribute: Taming XP</div>
-    </div>
-    <div class="checkbox-group">
-      <label><input type="checkbox" class="unlocked" /> Unlocked</label>
-      <label><input type="checkbox" class="maxed" /> Maxed</label>
-    </div>
-  </div>
-</section>
-
-<!-- Enchanting -->
-<section id="enchanting" class="skill-list">
-  <h2>Enchanting</h2>
-  <div class="shard" data-rarity="epic">
-    <div class="shard-name rarity-epic">
-      Magic Find Shard
-      <div class="attribute-name">Attribute: Magic Find</div>
-    </div>
-    <div class="checkbox-group">
-      <label><input type="checkbox" class="unlocked" /> Unlocked</label>
-      <label><input type="checkbox" class="maxed" /> Maxed</label>
-    </div>
-  </div>
-</section>
-
-<!-- Hunting -->
-<section id="hunting" class="skill-list">
-  <h2>Hunting</h2>
-  <div class="shard" data-rarity="legendary">
-    <div class="shard-name rarity-legendary">
-      True Defense Shard
-      <div class="attribute-name">Attribute: True Defense</div>
-    </div>
-    <div class="checkbox-group">
-      <label><input type="checkbox" class="unlocked" /> Unlocked</label>
-      <label><input type="checkbox" class="maxed" /> Maxed</label>
-    </div>
-  </div>
-</section>
-
-<script>
-  const navButtons = document.querySelectorAll('nav button');
-  const skillLists = document.querySelectorAll('.skill-list');
-
-  function showSkill(skillId) {
-    skillLists.forEach(section => {
-      section.classList.toggle('active', section.id === skillId);
-    });
-
-    navButtons.forEach(btn => {
-      const active = btn.dataset.skill === skillId;
-      btn.classList.toggle('active', active);
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-  }
-
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (!btn.classList.contains('active')) {
-        showSkill(btn.dataset.skill);
-      }
-    });
-  });
-
-  const unlockedCountSpan = document.getElementById('unlocked-count');
-  const maxedCountSpan = document.getElementById('maxed-count');
-  const totalShardsSpan1 = document.getElementById('total-shards');
-  const totalShardsSpan2 = document.getElementById('total-shards-2');
-
-  const allUnlockedCheckboxes = () => document.querySelectorAll('input.unlocked');
-  const allMaxedCheckboxes = () => document.querySelectorAll('input.maxed');
-
-  function updateCounters() {
-    const totalShards = allUnlockedCheckboxes().length;
-    totalShardsSpan1.textContent = totalShards;
-    totalShardsSpan2.textContent = totalShards;
-
-    let unlockedCount = 0;
-    let maxedCount = 0;
-
-    allUnlockedCheckboxes().forEach(cb => {
-      if (cb.checked) unlockedCount++;
-    });
-
-    allMaxedCheckboxes().forEach(cb => {
-      if (cb.checked) maxedCount++;
-    });
-
-    unlockedCountSpan.textContent = unlockedCount;
-    maxedCountSpan.textContent = maxedCount;
-  }
-
-  document.querySelectorAll('.shard').forEach(shard => {
-    const unlocked = shard.querySelector('input.unlocked');
-    const maxed = shard.querySelector('input.maxed');
-
-    maxed.addEventListener('change', () => {
-      if (maxed.checked) unlocked.checked = true;
-      updateCounters();
-    });
-
-    unlocked.addEventListener('change', () => {
-      if (!unlocked.checked) maxed.checked = false;
-      updateCounters();
-    });
-  });
-
-  updateCounters();
-</script>
-
-</body>
-</html>
+<!-- ✅ GitHub Link -->
+<a href="https://github.com/ReeceJWW/skyblock-shard-checklist/tree/main" target="_blank" class="github-link" aria-label="GitHub Repository">
+  <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
+    <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 
+    0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+    -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+    -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11 
+    0 0 .67-.21 2.2.82a7.68 7.68 0 012 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 
+    1.91.08 2.11.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 
+    3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.4
