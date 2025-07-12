@@ -14,5 +14,5 @@ These include:
 - Once foraging update is added to API we plan to allow users to get data based on entering their username!
 - A searchbar to make finding specific shards much easier
 - Showing the easiest fusion / way to get each shard
-For more advanced data check out [Sky Shards](https://skyshards.com/#/recipes) which is very well made by [Campionnn](https://github.com/Campionnn)
+### For more advanced data check out [Sky Shards](https://skyshards.com/#/recipes) which is very well made by [Campionnn](https://github.com/Campionnn)
 
